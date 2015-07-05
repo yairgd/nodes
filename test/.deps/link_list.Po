@@ -1,5 +1,0 @@
-link_list.o: link_list.c /usr/include/stdc-predef.h ../src/link_list.h
-
-/usr/include/stdc-predef.h:
-
-../src/link_list.h:
