@@ -11,9 +11,6 @@ AM_CPPFLAGS = -I$(top_srcdir)/src
 
 if UNIT_TEST
 test_bins = simple_parser node_ex1 node_ex2 link_list
-endif
-bin_PROGRAMS = tree_build_with_parser ${test_bins}
-
 simple_parser_CFLAGS = -Wl,--wrap=ex
 simple_parser_LDADD = $(top_srcdir)/src/libnode.a -lfl
 simple_parser_LDFLAGS= -lpthread #-ldl -lc -lssl -lcrypto
@@ -35,6 +32,7 @@ link_list_LDADD = $(top_srcdir)/src/libnode.a
 link_list_LDFLAGS=
 link_SOURCES= \
 link_list.c
+endif
 
 
 tree_build_with_parser_CFLAGS = -std=c99
@@ -42,6 +40,8 @@ tree_build_with_parser_LDADD = $(top_srcdir)/src/libnode.a -lfl
 tree_build_with_parser_LDFLAGS= -lpthread
 tree_build_with_parser_SOURCES= \
 tree_build_with_parser.c
+
+bin_PROGRAMS = tree_build_with_parser ${test_bins}
 
 
 
