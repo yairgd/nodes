@@ -67,9 +67,6 @@ stmt:
 	|OUTPUT string_list ';' {$$=var_declare(OUTPUT);}
 	|NODE VARIABLE '{' stmt_list '}' {$$=module_declare($2,$4);}
 	|node_io_list{node_list_len=node_list.list_len;} ASSIGN node_io_list ';' {$$=node_io(); }
-/*	|NODE_IO '=' NODE_IO ';' {$$=opr('=',2,node_io($1),node_io($3) );}
-	|VARIABLE '=' NODE_IO ';' {$$=opr('W',2,node_io1($1),node_io($3) );}
-	|NODE_IO '=' VARIABLE ';' {$$=opr('Q',2,node_io($1),node_io1($3) );}*/
 	|VARIABLE  init_list ';' {$$=make_init_list($1);}
 	|';'	{$$=opr(';',1,0);} /* remove non neccesry ';'*/
 	;
@@ -201,35 +198,7 @@ node_type_t *node_io()
 	return opr('*',1,p );
 
 }
-#ifdef GG
-node_type_t *node_io(char *s)
-{
-	node_type_t *p;
-	/* allocate node */
-	if ((p = malloc(sizeof(node_io_t))) == NULL)
-		yyerror("out of memory"); 
-	p->keyword_type=NODE_IO;
-	p->node_io.node_name = s;
-	for (;*s!='.';s++);
-	*s=0;
-	s++;
-	p->node_io.io_name = s;
-	return p;
 
-}
-node_type_t *node_io1(char *s)
-{
-	node_type_t *p;
-	/* allocate node */
-	if ((p = malloc(sizeof(node_io_t))) == NULL)
-		yyerror("out of memory"); 
-	p->keyword_type=NODE_IO;
-	p->node_io.node_name = 0;
-	p->node_io.io_name = s;
-	return p;
-
-}
-#endif
 node_type_t *var_declare(int opr)
 {
  	node_type_t *p;
