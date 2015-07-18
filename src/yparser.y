@@ -47,7 +47,7 @@ int node_list_len=0;
 %token <iValue> INTEGER
 %token <dValue> DOUBLE
 %token <sString> VARIABLE NODE_IO STRING 
-%token <var_declare_node_t>INPUT OUTPUT 
+%token INPUT OUTPUT 
 %token NODE CONNECTION ASSIGN
 %type  <nodePtr>     stmt stmt_list 
 
