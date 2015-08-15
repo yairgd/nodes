@@ -1,0 +1,5 @@
+git config --global diff.tool vimdiff
+git config --global difftool.prompt false
+git config --global alias.d difftool
+
+http://stackoverflow.com/questions/9785792/git-track-ignore-delete-untrack #git tack untack
